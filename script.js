@@ -8,9 +8,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
+            // Close mobile menu after clicking a link
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                document.querySelector('.mobile-menu-toggle .material-icons').textContent = 'menu';
+            }
         }
     });
 });
+
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = mobileMenuToggle.querySelector('.material-icons');
+        icon.textContent = navLinks.classList.contains('active') ? 'close' : 'menu';
+    });
+}
 
 // Skills tab switching
 const tabButtons = document.querySelectorAll('.tab-btn');
